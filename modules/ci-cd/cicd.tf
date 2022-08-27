@@ -10,7 +10,7 @@ resource "aws_codebuild_project" "ce_codebuild" {
   name          = "cautious-enigma-project"
   description   = "cautious-enigma-project"
   build_timeout = "60"
-  service_role  = aws_iam_role.example.arn
+  service_role  = aws_iam_role.codebuild_iam_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
