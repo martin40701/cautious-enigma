@@ -67,7 +67,7 @@ resource "aws_codebuild_project" "ce_codebuild" {
     vpc_id = var.vpc_id
 
     subnets = [
-     var.subnet_ids.*.id
+     var.subnet_ids
     ]
 
     security_group_ids = var.security_group

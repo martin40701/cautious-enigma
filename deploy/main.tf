@@ -9,7 +9,7 @@ module "network" {
 module "ci_cd" {
   source = "../modules/ci-cd"
   region = var.region
-  subnet_ids = flatten([module.network.private_subnets])
+  subnet_ids = module.network.private_subnets
   vpc_id     = module.network.vpc_id
   security_group = module.network.security_group
 }
@@ -18,7 +18,7 @@ module "eks_cluster" {
   source = "../modules/kubernetes-infra"
 
   vpc_id     = module.network.vpc_id
-  subnet_ids = flatten([module.network.private_subnets])
+  subnet_ids = module.network.private_subnets
   cluster_name = var.cluster_name
   region = var.region
   security_group = module.network.security_group
