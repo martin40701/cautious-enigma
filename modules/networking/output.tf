@@ -1,6 +1,7 @@
+
 output "private_subnets" {
-  description = "Private Subnet Variable"
-  value       = module.vpc.private_subnets
+  description = "Outputs all subnet ids as an array."
+  value = ["${aws_subnet.private.*.id}"]
 }
 
 output "vpc_id" {
