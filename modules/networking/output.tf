@@ -1,7 +1,7 @@
 
 output "private_subnets" {
   description = "Outputs all subnet ids as an array."
-  value = ["${module.vpc.private_subnets.*.id}"]
+  value       = module.vpc.private_subnets
 }
 
 output "vpc_id" {
