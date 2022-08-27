@@ -36,7 +36,7 @@ resource "aws_security_group" "security_group_one" {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
-    cidr_blocks = var.vpc_cidr_range
+    cidr_blocks = ["${var.vpc_cidr_range}"]
   }
   egress {
     from_port   = 0

@@ -5,7 +5,7 @@ output "private_subnets" {
 
 output "vpc_id" {
   description = "VPC ID"
-  value       = module.vpc.private_subnets
+  value       = module.vpc.vpc_id
 }
 
 output "security_group" {
