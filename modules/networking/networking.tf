@@ -29,7 +29,7 @@ module "vpc" {
   }
 }
 resource "aws_security_group" "security_group_one" {
-  name_prefix = "node_group_one"
+  name_prefix = "security_group_one"
   vpc_id      = module.vpc.vpc_id
 
   ingress {
