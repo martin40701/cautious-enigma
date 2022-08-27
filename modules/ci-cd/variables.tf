@@ -2,6 +2,11 @@ variable "subnet_ids" {
   description = "Subnet object"
   nullable = false
 }
+variable "flattended_subnet_ids" {
+  description = "flattended subnect ids for IAM"
+  nullable = false
+}
+
 variable "region" {
   description = "Which region to use for cloud infrastructure"
   type        = string

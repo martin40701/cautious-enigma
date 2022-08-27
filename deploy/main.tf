@@ -10,6 +10,7 @@ module "ci_cd" {
   source = "../modules/ci-cd"
   region = var.region
   subnet_ids = module.network.private_subnets
+  flattended_subnet_ids = flatten(module.network.private_subnets)[0]
   vpc_id     = module.network.vpc_id
   security_group = module.network.security_group
 }

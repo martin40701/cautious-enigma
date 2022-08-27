@@ -59,7 +59,7 @@ resource "aws_iam_role_policy" "codebuild_iam_role_policy" {
       "Condition": {
         "StringEquals": {
           "ec2:Subnet": [
-            "${var.subnet_ids}"
+            "${var.flattended_subnet_ids}"
           ],
           "ec2:AuthorizedService": "codebuild.amazonaws.com"
         }
