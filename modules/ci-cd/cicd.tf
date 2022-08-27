@@ -70,7 +70,7 @@ resource "aws_codebuild_project" "ce_codebuild" {
       var.private_subnet.id
     ]
 
-    security_group_ids = var.security_group_id
+    security_group_ids = var.security_group.id
   }
 
   tags = {
