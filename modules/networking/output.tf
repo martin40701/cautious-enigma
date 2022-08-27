@@ -10,5 +10,5 @@ output "vpc_id" {
 
 output "security_group" {
   description = "Security Group ID"
-  value       = aws_security_group.security_group_one
+  value       = aws_security_group.security_group_one.id
 }

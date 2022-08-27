@@ -32,7 +32,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        var.security_group.id
+        var.security_group
       ]
     }
 
@@ -50,7 +50,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        var.security_group.id
+        var.security_group
       ]
     }
   }
