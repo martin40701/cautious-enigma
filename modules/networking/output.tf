@@ -8,7 +8,7 @@ output "vpc_id" {
   value       = module.vpc.private_subnets
 }
 
-output "security_group_id" {
+output "security_group" {
   description = "Security Group ID"
   value       = aws_security_group.security_group_one
 }

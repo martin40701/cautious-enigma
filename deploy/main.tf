@@ -11,7 +11,7 @@ module "ci_cd" {
   region = var.region
   private_subnet = module.network.private_subnets
   vpc_id     = module.network.vpc_id
-  security_group_id = module.network.aws_security_group.id
+  security_group = module.network.security_group
 }
 
 module "eks_cluster" {
@@ -21,6 +21,7 @@ module "eks_cluster" {
   subnet_ids = module.network.private_subnets
   cluster_name = var.cluster_name
   region = var.region
+  security_group = module.network.security_group
 
 }
 

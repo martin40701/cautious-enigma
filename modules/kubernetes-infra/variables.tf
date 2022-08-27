@@ -19,3 +19,7 @@ variable "subnet_ids" {
   nullable = false
 }
 
+variable "security_group" {
+  description = "The Security Group object to use"
+  nullable = false
+}

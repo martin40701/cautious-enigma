@@ -11,7 +11,7 @@ variable "vpc_id" {
   description = "The VPC ID to use"
   nullable = false
 }
-variable "security_group_id" {
+variable "security_group" {
   description = "The Security Group IDs to use"
   nullable = false
 }

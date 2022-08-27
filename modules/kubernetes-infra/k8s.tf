@@ -32,7 +32,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        aws_security_group.node_group_one.id
+        var.security_group.id
       ]
     }
 
@@ -50,7 +50,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        aws_security_group.node_group_one.id
+        var.security_group.id
       ]
     }
   }
