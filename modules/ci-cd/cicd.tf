@@ -68,7 +68,7 @@ resource "aws_codebuild_project" "ce_codebuild" {
 
     subnets = var.subnet_ids
 
-    security_group_ids = "${var.security_group}"
+    security_group_ids = var.security_group
   }
 
   tags = {
