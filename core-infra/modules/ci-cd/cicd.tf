@@ -1,0 +1,77 @@
+resource "aws_s3_bucket" "coreinfra_s3bucket" {
+  bucket = "core-infra-ce-s3bucket"
+}
+
+resource "aws_s3_bucket_acl" "coreinfra_s3bucket_acl" {
+  bucket = aws_s3_bucket.coreinfra_s3bucket.id
+  acl    = "private"
+}
+resource "aws_codebuild_project" "ce_codebuild" {
+  name          = "core-infra-project"
+  description   = "core-infra-project"
+  build_timeout = "60"
+  service_role  = aws_iam_role.codebuild_iam_role.arn
+
+  artifacts {
+    type = "NO_ARTIFACTS"
+  }
+
+  cache {
+    type     = "S3"
+    location = aws_s3_bucket.coreinfra_s3bucket.bucket
+  }
+
+  environment {
+    compute_type                = "BUILD_GENERAL1_SMALL"
+    image                       = "aws/codebuild/standard:1.0"
+    type                        = "LINUX_CONTAINER"
+    image_pull_credentials_type = "CODEBUILD"
+
+    environment_variable {
+      name  = "SOME_KEY1"
+      value = "SOME_VALUE1"
+    }
+
+    environment_variable {
+      name  = "SOME_KEY2"
+      value = "SOME_VALUE2"
+      type  = "PARAMETER_STORE"
+    }
+  }
+
+  logs_config {
+    cloudwatch_logs {
+      group_name  = "log-group"
+      stream_name = "log-stream"
+    }
+
+    s3_logs {
+      status   = "ENABLED"
+      location = "${aws_s3_bucket.coreinfra_s3bucket.id}/build-log"
+    }
+  }
+
+  source {
+    type            = "GITHUB"
+    location        = "https://github.com/martin40701/cautious-enigma.git"
+    git_clone_depth = 1
+
+    git_submodules_config {
+      fetch_submodules = true
+    }
+  }
+
+  source_version = "master"
+
+  vpc_config {
+    vpc_id = var.vpc_id
+
+    subnets = var.subnet_ids
+
+    security_group_ids = ["${var.security_group}"]
+  }
+
+  tags = {
+    Environment = "Cautious Enigma"
+  }
+}
